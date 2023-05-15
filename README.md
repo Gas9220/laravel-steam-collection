@@ -52,4 +52,4 @@ Nome database: steam_db
 
 ### Index
 
-![style.jpg](Steam%20c594c681da4c4a8fa151aa7653ed7113/style.jpg)
+![style.jpg](readme-assets/layout-index.jpg)
