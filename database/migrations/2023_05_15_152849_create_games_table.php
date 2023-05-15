@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('publisher', 40);
             $table->date('publication_year');
             $table->string('developers', 40);
-            $table->string('platform');
+            $table->string('platforms');
             $table->text('description');
             $table->tinyInteger('pegi')->nullable();
             $table->string('genre');
