@@ -3,7 +3,7 @@
 {{-- @dd($games); --}}
 
 @foreach ($games as $game) 
-<h2>{{ $game->title}}</h2>
+<h2 class="text-warning">{{ $game->title}}</h2>
 <div>
     <i class="bi bi-arrow-right-short"></i>
 
