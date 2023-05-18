@@ -66,8 +66,10 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.games.edit');
+        $game = Game::findOrFail($id);
+        return view('admin.game.edit', compact('game'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -78,7 +80,25 @@ class GamesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Take game data from the database
+        $game = Game::findOrFail($id);
+
+        // Update with the request data
+        $game->title = $request->input('title');
+        $game->publisher = $request->input('publisher');
+        $game->publication_year = $request->input('publication_year');
+        $game->developers = $request->input('developers');
+        $game->platforms = $request->input('platforms');
+        $game->description = $request->input('description');
+        $game->pegi = $request->input('pegi');
+        $game->genre = $request->input('genre');
+        $game->thumbnail = $request->input('thumbnail');
+
+        // Save in db
+        $game->save();
+
+        // Redirect to index view
+        return redirect()->route('admin.games.index');
     }
 
     /**
