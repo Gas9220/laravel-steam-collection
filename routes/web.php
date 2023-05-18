@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\GamesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('admin.games.index');
 });
+
+Route::resource('games', GamesController::class);
