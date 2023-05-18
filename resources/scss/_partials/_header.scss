@@ -1,0 +1,14 @@
+@use 'variables';
+
+header {
+
+    background-color: variables.$bg-color;
+
+    .header-text {
+        color: variables.$text_color;
+    }
+
+    .logo {
+        width: 3.125rem;
+    }
+}

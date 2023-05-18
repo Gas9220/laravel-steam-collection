@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.games.index');
+Route::get('/app', function () {
+    return view('layout/app');
 });
 
 Route::resource('games', GamesController::class);

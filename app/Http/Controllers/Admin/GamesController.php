@@ -59,6 +59,7 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
+
         return view('admin.games.edit');
     }
 
