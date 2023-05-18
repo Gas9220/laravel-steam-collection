@@ -37,7 +37,14 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+
+        $new_game = new Game();
+        $new_game->fill($data);
+        $new_game->save();
+        
+        return redirect()->route('games.show',$new_game->id);
     }
 
     /**
