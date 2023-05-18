@@ -67,7 +67,7 @@ class GamesController extends Controller
     public function edit($id)
     {
         $game = Game::findOrFail($id);
-        return view('admin.game.edit', compact('game'));
+        return view('admin.games.edit', compact('game'));
     }
 
 
@@ -78,27 +78,11 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Game $game)
     {
-        // Take game data from the database
-        $game = Game::findOrFail($id);
-
-        // Update with the request data
-        $game->title = $request->input('title');
-        $game->publisher = $request->input('publisher');
-        $game->publication_year = $request->input('publication_year');
-        $game->developers = $request->input('developers');
-        $game->platforms = $request->input('platforms');
-        $game->description = $request->input('description');
-        $game->pegi = $request->input('pegi');
-        $game->genre = $request->input('genre');
-        $game->thumbnail = $request->input('thumbnail');
-
-        // Save in db
-        $game->save();
-
-        // Redirect to index view
-        return redirect()->route('admin.games.index');
+        $data = $request->all();
+        $game->update($data);
+        return to_route('games.show', $game->id);
     }
 
     /**
