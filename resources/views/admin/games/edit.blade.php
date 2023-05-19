@@ -2,11 +2,12 @@
 
 @section('page.main')
 <div class="container-fluid">
-    <h1>Edit: {{$game->title}}</h1>
+    <h1 class="pb-4">Edit: {{$game->title}}</h1>
+    <a href="{{ route('games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna indietro</a>
     <form action="{{route('games.update', $game->id)}}" method="POST">
         @csrf
         @method('PUT')
-        <div class="form-group">
+        <div class="form-group pt-4">
             <label for="title">Titolo</label>
             <input type="text" value="{{old('title',$game->title)}}" class="form-control" id="title" name="title">
         </div>
@@ -53,7 +54,7 @@
             <label for="description">Description</label>
             <textarea class="form-control" id="description" name="description" rows="3">{{old('description',$game->description)}}"</textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group pb-4">
             <label for="early_access">Early access</label>
             <select class="form-select" id="early_access" name="early_access">
                 <option selected>Select an option</option>
