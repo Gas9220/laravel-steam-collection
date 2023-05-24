@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Developer;
 use App\Models\Game;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class GamesController extends Controller
     public function create()
     {
         $publishers = Publisher::all();
-        return view('admin.games.create', compact('publishers'));
+              $developers=Developer::all();
+        return view('admin.games.create', compact('publishers', 'developers'));
     }
 
     /**
@@ -68,8 +70,9 @@ class GamesController extends Controller
     public function edit($id)
     {
         $publishers = Publisher::all();
+      $developers = Developer::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game', 'publishers'));
+        return view('admin.games.edit', compact('game', 'publishers','developers'));
     }
 
 
