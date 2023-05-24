@@ -1,9 +1,9 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-@section('page.main')
+@section('content')
 <div class="container pt-4">
   <div class="text-center">
-  <a href="{{ route('games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna indietro</a>
+  <a href="{{ route('admin.games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna indietro</a>
     <h1 class="pt-2">{{ $game->title }}</h1>
   </div>
 
@@ -27,7 +27,7 @@
         <li class="list-group-item">Early access: {{ $game->early_access == 0 ? 'No' : 'Yes' }}</li>
       </ul>
       <div class="card-body">
-        <a href="{{ route('games.edit', $game->id) }}" class="btn btn-primary btn-sm me-2 p-2">Vai ad edit</a>
+        <a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-primary btn-sm me-2 p-2">Vai ad edit</a>
       </div>
     </div>
   </div>

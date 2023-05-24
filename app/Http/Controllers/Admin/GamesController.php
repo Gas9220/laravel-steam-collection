@@ -44,7 +44,7 @@ class GamesController extends Controller
         $new_game->fill($data);
         $new_game->save();
         
-        return redirect()->route('games.show',$new_game->id);
+        return redirect()->route('admin.games.show',$new_game->id);
     }
 
     /**
@@ -82,7 +82,7 @@ class GamesController extends Controller
     {
         $data = $request->all();
         $game->update($data);
-        return to_route('games.show', $game->id);
+        return to_route('admin.games.show', $game->id);
     }
 
     /**

@@ -1,10 +1,10 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-@section('page.main')
+@section('content')
 <div class="container-fluid">
     <h1 class="pb-4">Edit: {{$game->title}}</h1>
-    <a href="{{ route('games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna indietro</a>
-    <form action="{{route('games.update', $game->id)}}" method="POST">
+    <a href="{{ route('admin.games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna indietro</a>
+    <form action="{{route('admin.games.update', $game->id)}}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group pt-4">

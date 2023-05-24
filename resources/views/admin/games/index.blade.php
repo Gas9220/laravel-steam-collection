@@ -1,9 +1,9 @@
-@extends('layout.app')
-@section('page.main')
+@extends('layouts.app')
+@section('content')
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="text-center">I tuoi Games</h1>
-        <a href="{{ route('games.create') }}" class="btn btn-primary btn-sm me-2 p-2">Create</a>
+        <a href="{{ route('admin.games.create') }}" class="btn btn-primary btn-sm me-2 p-2">Create</a>
     </div>
 
     <table class="table table-striped">
@@ -34,8 +34,8 @@
                 <td>{{ $game->description }}</td>
                 <td>
                     <ul class="list-unstyled d-flex m-0 gap-1 justify-content-end">
-                        <li><a href="{{ route('games.show', $game->id)}}" class="btn btn-primary">Show </a></li>
-                        <li><a href="{{ route('games.edit', $game->id)}}" class="btn btn-success">Edit </a></li>
+                        <li><a href="{{ route('admin.games.show', $game->id)}}" class="btn btn-primary">Show </a></li>
+                        <li><a href="{{ route('admin.games.edit', $game->id)}}" class="btn btn-success">Edit </a></li>
                     </ul>
                 </td>
             </tr>

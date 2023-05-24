@@ -1,11 +1,11 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-@section('page.main')
+@section('content')
 
 <div class="container">
     <h1 class="pb-4">Inserisci un nuovo videogioco</h1>
-    <a href="{{ route('games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna index</a>
-    <form action="{{route('games.store')}}" method="POST">
+    <a href="{{ route('admin.games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna index</a>
+    <form action="{{route('admin.games.store')}}" method="POST">
         @csrf
         <div class="form-group pt-4">
             <label for="title">Title</label>
