@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\Platform;
 use Illuminate\Http\Request;
 
 class GamesController extends Controller
@@ -26,7 +27,8 @@ class GamesController extends Controller
      */
     public function create()
     {
-        return view('admin.games.create');
+        $platforms = Platform::all();
+        return view('admin.games.create',compact('platforms'));
     }
 
     /**
