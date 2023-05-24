@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Developer;
 use App\Models\Game;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,6 +19,8 @@ class GamesTableSeeder extends Seeder
         $games = config('games');
 
         foreach($games as $game) {
+
+            $developer = Developer::inRandomOrder()->first();
             $newGame = new Game();
 
             $newGame->title = $game['title'];
@@ -31,6 +34,7 @@ class GamesTableSeeder extends Seeder
             $newGame->rating = $game['rating'];
             $newGame->thumbnail = $game['thumbnail'];
             $newGame->early_access = $game['early_access'];
+            $newGame->developer_id = $developer->id;
     
             $newGame->save();
         }

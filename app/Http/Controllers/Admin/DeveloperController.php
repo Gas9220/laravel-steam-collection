@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Developer;
-use App\Models\Game;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreDeveloperRequest;
+use App\Http\Requests\UpdateDeveloperRequest;
 
-class GamesController extends Controller
+class DeveloperController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,7 @@ class GamesController extends Controller
      */
     public function index()
     {
-        $games = Game::all();
-        return view('admin.games.index', compact('games'));
+        //
     }
 
     /**
@@ -34,68 +33,55 @@ class GamesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreDeveloperRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDeveloperRequest $request)
     {
-
-        $data = $request->all();
-        /* dd($data); */
-
-        $new_game = new Game();
-        $new_game->fill($data);
-        $new_game->save();
-        
-        return redirect()->route('admin.games.show',$new_game->id);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Developer  $developer
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show(Developer $developer)
     {
-        return view('admin.games.show', compact('game'));
+        return view('admin.developers.show', compact('developer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Developer  $developer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Developer $developer)
     {
-        $game = Game::findOrFail($id);
-        $developers = Developer::all();
-        return view('admin.games.edit', compact('game', 'developers'));
+        //
     }
-
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateDeveloperRequest  $request
+     * @param  \App\Models\Developer  $developer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(UpdateDeveloperRequest $request, Developer $developer)
     {
-        $data = $request->all();
-        $game->update($data);
-        return to_route('admin.games.show', $game->id);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Developer  $developer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Developer $developer)
     {
         //
     }
