@@ -9,6 +9,11 @@ class Game extends Model
 {
     use HasFactory;
 
+    public function publisher()
+    {
+        return $this->belongsTo(Publisher::class);
+    }
+
     protected $guarded = [];
 
     public function developer()
