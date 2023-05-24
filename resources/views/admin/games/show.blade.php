@@ -10,7 +10,8 @@
 
   <div class="container d-flex justify-content-center align-items-center">
     <div class="card" style="width: 40rem;">
-      <img src="{{ $game->thumbnail }}" class="card-img-top" alt="img">
+      {{-- <img src="{{ $game->thumbnail }}" class="card-img-top" alt="img"> --}}
+      <img src="{{ asset('storage/' . $game->thumbnail) }}" class="card-img-top" alt="img">
       <div class="card-body">
         <h3 class="card-title">Title: {{ $game->title }}</h3>
         <p class="card-text">Description: {{ $game->description }}</p>
@@ -29,6 +30,7 @@
       <div class="card-body">
         <a href="{{ route('games.edit', $game->id) }}" class="btn btn-primary btn-sm me-2 p-2">Vai ad edit</a>
       </div>
+      <img src="{{ asset('storage/' . $game->image) }}" class="card-img-top" alt="img">
     </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GamesController extends Controller
 {
@@ -42,6 +43,15 @@ class GamesController extends Controller
 
         $new_game = new Game();
         $new_game->fill($data);
+
+        if(isset($data['image'])){
+            $new_game->image = Storage::put('uploads', $data['image']);
+        }
+
+        if(isset($data['thumbnail'])){
+            $new_game->image = Storage::put('uploads', $data['thumbnail']);
+        }
+
         $new_game->save();
         
         return redirect()->route('games.show',$new_game->id);
