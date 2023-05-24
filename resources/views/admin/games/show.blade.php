@@ -18,10 +18,9 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Pubblisher: {{ $game->publisher }}</li>
         <li class="list-group-item">Publication year: {{ $game->publication_year }}</li>
-        <li class="list-group-item">Developers: {{ $game->developers }}</li>
         <li class="list-group-item">Platforms: {{ $game->platforms }}</li>
         <li class="list-group-item">Pegi: {{ $game->pegi }}</li>
-        <li class="list-group-item">Developers: {{ $game->developers }}</li>
+        <li class="list-group-item">Developers: {{ $game->developer?->name ?: 'Developer not present' }}</li>
         <li class="list-group-item">Genre: {{ $game->genre }}</li>
         <li class="list-group-item">Rating: {{ $game->rating }}</li>
         <li class="list-group-item">Early access: {{ $game->early_access == 0 ? 'No' : 'Yes' }}</li>
