@@ -13,7 +13,12 @@
         </div>
         <div class="form-group">
             <label for="publisher">Publisher</label>
-            <input type="text" value="{{old('publisher',$game->publisher)}}" class="form-control" id="publisher" name="publisher">
+            <select class="form-select" id="publisher" name="publisher_id">
+                <option selected>Select publisher</option>
+                @foreach($publishers as $publisher)
+                    <option value="{{ $publisher->id }}" {{ old('publisher_id', $game->publisher_id) == $publisher->id ? 'selected' : '' }}>{{ $publisher->name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="publication_year">Publication year</label>

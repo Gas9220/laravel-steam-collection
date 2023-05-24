@@ -16,7 +16,7 @@
         <p class="card-text">Description: {{ $game->description }}</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Pubblisher: {{ $game->publisher }}</li>
+        <li class="list-group-item">Publisher: {{ $game->publisher?->name ?: 'Publisher not present' }}</li>
         <li class="list-group-item">Publication year: {{ $game->publication_year }}</li>
         <li class="list-group-item">Developers: {{ $game->developers }}</li>
         <li class="list-group-item">Platforms: {{ $game->platforms }}</li>

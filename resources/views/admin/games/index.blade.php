@@ -24,7 +24,7 @@
             @foreach ($games as $game)
             <tr>
                 <th scope="row">{{ $game->title }}</th>
-                <td>{{ $game->publisher }}</td>
+                <td>{{ $game->publisher?->name ?: 'Publisher not present' }}</td>
                 <td>{{ $game->developers }}</td>
                 <td>{{ $game->platforms }}</td>
                 <td>{{ $game->pegi }}</td>

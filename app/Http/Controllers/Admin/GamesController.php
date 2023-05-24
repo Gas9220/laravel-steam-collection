@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class GamesController extends Controller
@@ -26,7 +27,8 @@ class GamesController extends Controller
      */
     public function create()
     {
-        return view('admin.games.create');
+        $publishers = Publisher::all();
+        return view('admin.games.create', compact('publishers'));
     }
 
     /**
@@ -39,12 +41,11 @@ class GamesController extends Controller
     {
 
         $data = $request->all();
-
         $new_game = new Game();
         $new_game->fill($data);
         $new_game->save();
-        
-        return redirect()->route('admin.games.show',$new_game->id);
+
+        return redirect()->route('admin.games.show', $new_game->id);
     }
 
     /**
@@ -66,8 +67,9 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
+        $publishers = Publisher::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game'));
+        return view('admin.games.edit', compact('game', 'publishers'));
     }
 
 
