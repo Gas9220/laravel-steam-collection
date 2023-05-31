@@ -41,10 +41,24 @@ class GamesController extends Controller
     {
 
         $data = $request->all();
-
         $new_game = new Game();
-        $new_game->fill($data);
+
+        $new_game->title = $data['title'];         
+        $new_game->publisher = $data['publisher'];         
+        $new_game->publication_year = $data['publication_year'];         
+        $new_game->developers = $data['developers'];         
+        $new_game->genre = $data['genre'];         
+        $new_game->pegi = $data['pegi'];         
+        $new_game->description = $data['description'];         
+        $new_game->rating = $data['rating'];         
+        $new_game->thumbnail = $data['thumbnail'];         
+        $new_game->early_access = $data['early_access'];
+
         $new_game->save();
+
+        if(isset($data['platforms'])){
+            $new_game->platforms()->sync($data['platforms']);
+        }
         
         return redirect()->route('admin.games.show',$new_game->id);
     }

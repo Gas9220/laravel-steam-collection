@@ -23,10 +23,6 @@
                 <input type="text" class="form-control" id="developers" name="developers">
             </div>
             <div class="form-group">
-                <label for="platforms">Platforms</label>
-                <input type="text" class="form-control" id="platforms" name="platforms">
-            </div>
-            <div class="form-group">
                 <label for="pegi">Pegi</label>
                 <select class="form-select" id="tipo" name="pegi">
                     <option selected>Pegi</option>
