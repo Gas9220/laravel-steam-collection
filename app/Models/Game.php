@@ -9,12 +9,15 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+  
     public function publisher()
     {
         return $this->belongsTo(Publisher::class);
     }
-
-    protected $guarded = [];
+  
+    public function genres(){
+        return $this->belongsToMany(Genre::class)->withTimestamps();
 
     public function platforms(){
         return $this->belongsToMany(Platform::class)->withTimestamps();

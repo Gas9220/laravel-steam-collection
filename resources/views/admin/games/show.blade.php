@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container pt-4">
+        <div class="text-center">
+            <a href="{{ route('admin.games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna indietro</a>
+            <h1 class="pt-2">{{ $game->title }}</h1>
+        </div>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="card" style="width: 40rem;">
       <img src="{{ $game->thumbnail }}" class="card-img-top" alt="img">
@@ -19,7 +24,12 @@
         </li>
         <li class="list-group-item">Pegi: {{ $game->pegi }}</li>
         <li class="list-group-item">Developers: {{ $game->developer?->name ?: 'Developer not present' }}</li>
-        <li class="list-group-item">Genre: {{ $game->genre }}</li>
+                            <li class="list-group-item">
+                        Genres:
+                        @foreach ($game->genres as $genre)
+                            <span class="badge bg-warning">{{ $genre->name }}</span>
+                        @endforeach
+                    </li>
         <li class="list-group-item">Rating: {{ $game->rating }}</li>
         <li class="list-group-item">Early access: {{ $game->early_access == 0 ? 'No' : 'Yes' }}</li>
       </ul>

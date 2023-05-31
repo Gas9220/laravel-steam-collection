@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Developer;
 use App\Models\Game;
+use App\Models\Genre;
 use App\Models\Platform;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
@@ -29,11 +30,11 @@ class GamesController extends Controller
      */
     public function create()
     {
-        $platforms = Platform::all();
+        $genres = Genre::all();
         $platforms = Platform::all();
         $publishers = Publisher::all();
         $developers=Developer::all();
-        return view('admin.games.create', compact('publishers', 'developers','platforms'));
+        return view('admin.games.create', compact('publishers', 'developers','platforms','genres'));
     }
 
     /**
@@ -46,13 +47,13 @@ class GamesController extends Controller
     {
 
         $data = $request->all();
-        $new_game = new Game();
 
+        $new_game = new Game();
+      
         $new_game->title = $data['title'];
         $new_game->publisher_id = $data['publisher_id'];
         $new_game->publication_year = $data['publication_year'];
         $new_game->developer_id = $data['developer_id'];
-        $new_game->genre = $data['genre'];
         $new_game->pegi = $data['pegi'];
         $new_game->description = $data['description'];
         $new_game->rating = $data['rating'];
@@ -60,12 +61,16 @@ class GamesController extends Controller
         $new_game->early_access = $data['early_access'];
 
         $new_game->save();
-      
+
+        if(isset($data['genre_id'])){
+            $new_game->genres()->sync($data['genre_id']);
+        }
         if (isset($data['platforms'])) {
             $new_game->platforms()->sync($data['platforms']);
         }
 
         return redirect()->route('admin.games.show', $new_game->id);
+
     }
 
     /**
@@ -87,11 +92,13 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-  $platforms = Platform::all();
+
+         $genres = Genre::all();
+        $platforms = Platform::all();
         $publishers = Publisher::all();
-      $developers = Developer::all();
+       $developers = Developer::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game', 'publishers','developers','platforms'));
+        return view('admin.games.edit', compact('game', 'publishers','developers','platforms','genres'));
     }
 
 
@@ -106,14 +113,16 @@ class GamesController extends Controller
     {
         $data = $request->all();
 
+        $genres = isset($data['genre_id']) ? $data['genre_id'] : [];
+        $game->genres()->sync($genres);
+
         $platforms = isset($data['platforms']) ? $data['platforms'] : [];   
         $game->platforms()->sync($platforms);
 
         $game->title = $data['title'];
         $game->publisher_id = $data['publisher_id'];
         $game->publication_year = $data['publication_year'];
-        $game->developer_id = $data['developer_id'];
-        $game->genre = $data['genre'];
+        $game->developer_id = $data['developer_id'];;
         $game->pegi = $data['pegi'];
         $game->description = $data['description'];
         $game->rating = $data['rating'];

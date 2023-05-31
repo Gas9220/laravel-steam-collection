@@ -5,7 +5,6 @@
             <h1 class="text-center">I tuoi Games</h1>
             <a href="{{ route('admin.games.create') }}" class="btn btn-primary btn-sm me-2 p-2">Create</a>
         </div>
-
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -32,7 +31,11 @@
                             @endforeach
                         </td>
                         <td>{{ $game->pegi }}</td>
-                        <td>{{ $game->genre }}</td>
+                                        <td>
+                    @foreach ($game->genres as $genre)
+                        <span class="badge bg-warning">{{$genre->name}}</span>
+                    @endforeach
+                </td>
                         <td>{{ $game->rating }}</td>
                         <td>{{ $game->early_access == 0 ? 'no' : 'yes' }}</td>
                         <td>{{ $game->description }}</td>
@@ -47,8 +50,6 @@
                     </tr>
                 @endforeach
             </tbody>
-
         </table>
-
     </div>
 @endsection

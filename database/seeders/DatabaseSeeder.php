@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PublisherSeeder::class,
             DeveloperSeeder::class,
+            GenreSeeder::class,
             GamesTableSeeder::class,
             PlatformSeeder::class
         ]);

@@ -58,10 +58,18 @@
                     <option value="18" {{ old('pegi', $game->pegi) == 18 ? 'selected' : null }}>18</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="genre">Genre</label>
-                <input type="text" value="{{ old('genre', $game->genre) }}" class="form-control" id="genre"
-                    name="genre">
+            <div>Genres</div>
+            <div class="form-group d-flex flex-wrap">
+                @foreach ($genres as $genre)
+                    <div class="ms-2 mt-2">
+                        <input class="form-check-input" type="checkbox" value="{{ $genre->id }}" id="genres"
+                            name="genre_id[]" {{ $game->genres->contains($genre->id) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="genres">
+                            {{ $genre->name }}
+                        </label>
+                    </div>
+                @endforeach
+
             </div>
             <div class="form-group">
                 <label for="rating">Rating</label>
