@@ -23,7 +23,6 @@ class PlatformSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         foreach($platforms as $platform){
-
             $new_platform = new Platform();
             $new_platform->name = $platform;
             $new_platform->save();
