@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class GamesController extends Controller
@@ -26,7 +27,8 @@ class GamesController extends Controller
      */
     public function create()
     {
-        return view('admin.games.create');
+        $genres = Genre::all();
+        return view('admin.games.create', compact('genres'));
     }
 
     /**
@@ -39,10 +41,25 @@ class GamesController extends Controller
     {
 
         $data = $request->all();
-
+        //dd($data);
         $new_game = new Game();
-        $new_game->fill($data);
+
+        $new_game->title = $data['title'];
+        $new_game->publisher = $data['publisher'];
+        $new_game->publication_year = $data['publication_year'];
+        $new_game->developers = $data['developers'];
+        $new_game->platforms = $data['platforms'];
+        $new_game->pegi = $data['pegi'];
+        $new_game->description = $data['description'];
+        $new_game->rating = $data['rating'];
+        $new_game->thumbnail = $data['thumbnail'];
+        $new_game->early_access = $data['early_access'];
+
         $new_game->save();
+
+        if(isset($data['genre_id'])){
+            $new_game->genres()->sync($data['genre_id']);
+        }
         
         return redirect()->route('admin.games.show',$new_game->id);
     }
