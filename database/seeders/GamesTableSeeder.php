@@ -22,12 +22,8 @@ class GamesTableSeeder extends Seeder
 
             $developer = Developer::inRandomOrder()->first();
             $newGame = new Game();
-
             $newGame->title = $game['title'];
-            $newGame->publisher = $game['publisher'];
             $newGame->publication_year = $game['publication_year'];
-            $newGame->developers = $game['developers'];
-            $newGame->platforms = $game['platforms'];
             $newGame->description = $game['description'];
             $newGame->pegi = $game['pegi'];
             $newGame->genre = $game['genre'];

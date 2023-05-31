@@ -49,9 +49,9 @@ class GamesController extends Controller
         $new_game = new Game();
 
         $new_game->title = $data['title'];
-        $new_game->publisher = $data['publisher'];
+        $new_game->publisher_id = $data['publisher_id'];
         $new_game->publication_year = $data['publication_year'];
-        $new_game->developers = $data['developers'];
+        $new_game->developer_id = $data['developer_id'];
         $new_game->genre = $data['genre'];
         $new_game->pegi = $data['pegi'];
         $new_game->description = $data['description'];
@@ -110,15 +110,17 @@ class GamesController extends Controller
         $game->platforms()->sync($platforms);
 
         $game->title = $data['title'];
-        $game->publisher = $data['publisher'];
+        $game->publisher_id = $data['publisher_id'];
         $game->publication_year = $data['publication_year'];
-        $game->developers = $data['developers'];
+        $game->developer_id = $data['developer_id'];
         $game->genre = $data['genre'];
         $game->pegi = $data['pegi'];
         $game->description = $data['description'];
         $game->rating = $data['rating'];
         $game->thumbnail = $data['thumbnail'];
         $game->early_access = $data['early_access'];
+
+        $game->save();
 
         return to_route('admin.games.show', $game->id);
     }
