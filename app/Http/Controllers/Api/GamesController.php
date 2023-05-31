@@ -10,7 +10,7 @@ class GamesController extends Controller
 {
     public function index()
     {
-        $games = Game::with('platforms', 'genres', 'publishers', 'developers');
+        $games = Game::with('platforms', 'genres', 'publishers', 'developers')->get();
 
         return response()->json([
             'success' => true,
@@ -18,10 +18,10 @@ class GamesController extends Controller
         ]);
     }
 
-    public function show(int $id)
+    public function show($id)
     {
         $games = Game::with('platforms', 'genres', 'publishers', 'developers')->find($id);
-        
+
         if ($games) {
             return response()->json([
                 'success' => true,
