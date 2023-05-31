@@ -83,8 +83,9 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
+        $genres = Genre::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game'));
+        return view('admin.games.edit', compact('game', 'genres'));
     }
 
 
