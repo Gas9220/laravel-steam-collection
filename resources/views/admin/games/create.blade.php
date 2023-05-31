@@ -61,6 +61,9 @@
                     <option value="1">1</option>
                 </select>
             </div>
+            <div>
+                <label for="platforms">Platforms</label>
+            </div>
             @foreach ($platforms as $platform)
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="platforms" name="platforms[]"
