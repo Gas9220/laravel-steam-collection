@@ -28,7 +28,7 @@ class GamesController extends Controller
     public function create()
     {
         $platforms = Platform::all();
-        return view('admin.games.create',compact('platforms'));
+        return view('admin.games.create', compact('platforms'));
     }
 
     /**
@@ -43,24 +43,24 @@ class GamesController extends Controller
         $data = $request->all();
         $new_game = new Game();
 
-        $new_game->title = $data['title'];         
-        $new_game->publisher = $data['publisher'];         
-        $new_game->publication_year = $data['publication_year'];         
-        $new_game->developers = $data['developers'];         
-        $new_game->genre = $data['genre'];         
-        $new_game->pegi = $data['pegi'];         
-        $new_game->description = $data['description'];         
-        $new_game->rating = $data['rating'];         
-        $new_game->thumbnail = $data['thumbnail'];         
+        $new_game->title = $data['title'];
+        $new_game->publisher = $data['publisher'];
+        $new_game->publication_year = $data['publication_year'];
+        $new_game->developers = $data['developers'];
+        $new_game->genre = $data['genre'];
+        $new_game->pegi = $data['pegi'];
+        $new_game->description = $data['description'];
+        $new_game->rating = $data['rating'];
+        $new_game->thumbnail = $data['thumbnail'];
         $new_game->early_access = $data['early_access'];
 
         $new_game->save();
 
-        if(isset($data['platforms'])){
+        if (isset($data['platforms'])) {
             $new_game->platforms()->sync($data['platforms']);
         }
-        
-        return redirect()->route('admin.games.show',$new_game->id);
+
+        return redirect()->route('admin.games.show', $new_game->id);
     }
 
     /**
@@ -84,7 +84,7 @@ class GamesController extends Controller
     {
         $platforms = Platform::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game','platforms'));
+        return view('admin.games.edit', compact('game', 'platforms'));
     }
 
 
@@ -98,7 +98,21 @@ class GamesController extends Controller
     public function update(Request $request, Game $game)
     {
         $data = $request->all();
-        $game->update($data);
+
+        $platforms = isset($data['platforms']) ? $data['platforms'] : [];   
+        $game->platforms()->sync($platforms);
+
+        $game->title = $data['title'];
+        $game->publisher = $data['publisher'];
+        $game->publication_year = $data['publication_year'];
+        $game->developers = $data['developers'];
+        $game->genre = $data['genre'];
+        $game->pegi = $data['pegi'];
+        $game->description = $data['description'];
+        $game->rating = $data['rating'];
+        $game->thumbnail = $data['thumbnail'];
+        $game->early_access = $data['early_access'];
+
         return to_route('admin.games.show', $game->id);
     }
 
