@@ -11,7 +11,7 @@ class Game extends Model
 
     protected $guarded = [];
 
-    public function publishers()
+    public function publisher()
     {
         return $this->belongsTo(Publisher::class);
     }
@@ -26,7 +26,7 @@ class Game extends Model
         return $this->belongsToMany(Platform::class)->withTimestamps();
     }
 
-    public function developers()
+    public function developer()
     {
         return $this->belongsTo(Developer::class);
     }
