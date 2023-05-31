@@ -26,7 +26,6 @@ class GamesTableSeeder extends Seeder
             $newGame->publication_year = $game['publication_year'];
             $newGame->description = $game['description'];
             $newGame->pegi = $game['pegi'];
-            $newGame->genre = $game['genre'];
             $newGame->rating = $game['rating'];
             $newGame->thumbnail = $game['thumbnail'];
             $newGame->early_access = $game['early_access'];

@@ -33,8 +33,9 @@ class GamesController extends Controller
         $genres = Genre::all();
         $platforms = Platform::all();
         $publishers = Publisher::all();
-        $developers=Developer::all();
-        return view('admin.games.create', compact('publishers', 'developers','platforms','genres'));
+        $developers = Developer::all();
+
+        return view('admin.games.create', compact('publishers', 'developers', 'platforms', 'genres'));
     }
 
     /**
@@ -49,7 +50,7 @@ class GamesController extends Controller
         $data = $request->all();
 
         $new_game = new Game();
-      
+
         $new_game->title = $data['title'];
         $new_game->publisher_id = $data['publisher_id'];
         $new_game->publication_year = $data['publication_year'];
@@ -62,7 +63,7 @@ class GamesController extends Controller
 
         $new_game->save();
 
-        if(isset($data['genre_id'])){
+        if (isset($data['genre_id'])) {
             $new_game->genres()->sync($data['genre_id']);
         }
         if (isset($data['platforms'])) {
@@ -70,7 +71,6 @@ class GamesController extends Controller
         }
 
         return redirect()->route('admin.games.show', $new_game->id);
-
     }
 
     /**
@@ -92,13 +92,13 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-
-         $genres = Genre::all();
+        $genres = Genre::all();
         $platforms = Platform::all();
         $publishers = Publisher::all();
-       $developers = Developer::all();
+        $developers = Developer::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game', 'publishers','developers','platforms','genres'));
+        
+        return view('admin.games.edit', compact('game', 'publishers', 'developers', 'platforms', 'genres'));
     }
 
 
@@ -116,7 +116,7 @@ class GamesController extends Controller
         $genres = isset($data['genre_id']) ? $data['genre_id'] : [];
         $game->genres()->sync($genres);
 
-        $platforms = isset($data['platforms']) ? $data['platforms'] : [];   
+        $platforms = isset($data['platforms']) ? $data['platforms'] : [];
         $game->platforms()->sync($platforms);
 
         $game->title = $data['title'];

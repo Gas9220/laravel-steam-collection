@@ -32,7 +32,8 @@
                 <select class="form-select" name="developer_id" id="developer_id" name="developer_id">
                     <option value="">Select a Developer</option>
                     @foreach ($developers as $developer)
-                        <option value="{{ $developer->id }}" {{ old('developer_id', $game->developer_id) == $developer->id ? 'selected' : '' }}>
+                        <option value="{{ $developer->id }}"
+                            {{ old('developer_id', $game->developer_id) == $developer->id ? 'selected' : '' }}>
                             {{ $developer->name }}</option>
                     @endforeach
                 </select>
@@ -88,8 +89,10 @@
                 <label for="early_access">Early access</label>
                 <select class="form-select" id="early_access" name="early_access">
                     <option selected>Select an option</option>
-                    <option value="0" {{ old('early_access', $game->early_access) == 0 ? 'selected' : null }}>0</option>
-                    <option value="1" {{ old('early_access', $game->early_access) == 1 ? 'selected' : null }}>1</option>
+                    <option value="0" {{ old('early_access', $game->early_access) == 0 ? 'selected' : null }}>0
+                    </option>
+                    <option value="1" {{ old('early_access', $game->early_access) == 1 ? 'selected' : null }}>1
+                    </option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
