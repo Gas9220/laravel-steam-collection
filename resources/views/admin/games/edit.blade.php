@@ -32,10 +32,21 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="platforms">Platforms</label>
             <input type="text" value="{{old('platforms',$game->platforms)}}" class="form-control" id="platforms" name="platforms">
-        </div>
+        </div> --}}
+        <div>
+                <label for="platforms">Platforms</label>
+            </div>
+            @foreach ($platforms as $platform)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="platforms" name="platforms[]"
+                        value="{{ $platform->id }}"
+                        {{ $game->platforms->contains($platform->id) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="platforms">{{ $platform->name }}</label>
+                </div>
+            @endforeach
         <div class="form-group">
             <label for="pegi">Pegi</label>
             <select class="form-select" id="tipo" name="pegi">

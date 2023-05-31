@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
     <h1 class="pb-4">Inserisci un nuovo videogioco</h1>
     <a href="{{ route('admin.games.index') }}" class="btn btn-primary btn-sm me-2 p-2">Torna index</a>
@@ -32,10 +31,17 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <label for="platforms">Platforms</label>
-            <input type="text" class="form-control" id="platforms" name="platforms">
-        </div>
+            <div>
+                <label for="platforms">Platforms</label>
+            </div>
+            @foreach ($platforms as $platform)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="platforms" name="platforms[]"
+                        value="{{ $platform->id }}"
+                        {{ in_array($platform->id, old('platforms', [])) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="platforms">{{ $platform->name }}</label>
+                </div>
+            @endforeach
         <div class="form-group">
             <label for="pegi">Pegi</label>
             <select class="form-select" id="tipo" name="pegi">
@@ -74,6 +80,5 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
-
 @endsection
+

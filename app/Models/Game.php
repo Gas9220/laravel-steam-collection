@@ -16,6 +16,10 @@ class Game extends Model
 
     protected $guarded = [];
 
+    public function platforms(){
+        return $this->belongsToMany(Platform::class)->withTimestamps();
+    }
+      
     public function developer()
     {
         return $this->belongsTo(Developer::class);
