@@ -99,7 +99,22 @@ class GamesController extends Controller
     public function update(Request $request, Game $game)
     {
         $data = $request->all();
-        $game->update($data);
+
+        $genres = isset($data['genre_id']) ? $data['genre_id'] : [];
+
+        $game->genres()->sync($genres);
+
+        $game->title = $data['title'];
+        $game->publisher = $data['publisher'];
+        $game->publication_year = $data['publication_year'];
+        $game->developers = $data['developers'];
+        $game->platforms = $data['platforms'];
+        $game->pegi = $data['pegi'];
+        $game->description = $data['description'];
+        $game->rating = $data['rating'];
+        $game->thumbnail = $data['thumbnail'];
+        $game->early_access = $data['early_access'];
+
         return to_route('admin.games.show', $game->id);
     }
 
