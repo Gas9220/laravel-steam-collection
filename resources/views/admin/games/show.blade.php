@@ -20,8 +20,8 @@
                     <li class="list-group-item">Publication year: {{ $game->publication_year }}</li>
                     <li class="list-group-item">Developers: {{ $game->developers }}</li>
                     <li class="list-group-item">
+                        Platform:
                         @foreach ($game->platforms as $platform)
-                            Platform:
                             <span class="badge bg-warning">{{ $platform->name }}</span>
                         @endforeach
                     </li>
