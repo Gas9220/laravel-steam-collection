@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Developer;
 use App\Models\Game;
 use App\Models\Platform;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class GamesController extends Controller
@@ -28,7 +30,10 @@ class GamesController extends Controller
     public function create()
     {
         $platforms = Platform::all();
-        return view('admin.games.create', compact('platforms'));
+        $platforms = Platform::all();
+        $publishers = Publisher::all();
+        $developers=Developer::all();
+        return view('admin.games.create', compact('publishers', 'developers','platforms'));
     }
 
     /**
@@ -55,7 +60,7 @@ class GamesController extends Controller
         $new_game->early_access = $data['early_access'];
 
         $new_game->save();
-
+      
         if (isset($data['platforms'])) {
             $new_game->platforms()->sync($data['platforms']);
         }
@@ -82,9 +87,11 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        $platforms = Platform::all();
+  $platforms = Platform::all();
+        $publishers = Publisher::all();
+      $developers = Developer::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game', 'platforms'));
+        return view('admin.games.edit', compact('game', 'publishers','developers','platforms'));
     }
 
 

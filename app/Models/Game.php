@@ -9,9 +9,19 @@ class Game extends Model
 {
     use HasFactory;
 
+    public function publisher()
+    {
+        return $this->belongsTo(Publisher::class);
+    }
+
     protected $guarded = [];
 
     public function platforms(){
         return $this->belongsToMany(Platform::class)->withTimestamps();
+    }
+      
+    public function developer()
+    {
+        return $this->belongsTo(Developer::class);
     }
 }

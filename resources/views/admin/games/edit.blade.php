@@ -13,15 +13,24 @@
         </div>
         <div class="form-group">
             <label for="publisher">Publisher</label>
-            <input type="text" value="{{old('publisher',$game->publisher)}}" class="form-control" id="publisher" name="publisher">
+            <select class="form-select" id="publisher" name="publisher_id">
+                <option selected>Select publisher</option>
+                @foreach($publishers as $publisher)
+                    <option value="{{ $publisher->id }}" {{ old('publisher_id', $game->publisher_id) == $publisher->id ? 'selected' : '' }}>{{ $publisher->name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="publication_year">Publication year</label>
             <input type="date" value="{{old('publication_year',$game->publication_year)}}" class="form-control" id="publication_year" name="publication_year">
         </div>
-        <div class="form-group">
-            <label for="developers">Developers</label>
-            <input type="text" value="{{old('developers',$game->developers)}}" class="form-control" id="developers" name="developers">
+        <div class="mb-3"> <label for="developer_id" class="form-label">Select a Developer</label>
+            <select class="form-select" name="developer_id" id="developer_id">
+                <option value="">Select a Developer</option>
+                @foreach ($developers as $developer)
+                <option value="{{ $developer->id }}" {{ old('developer_id') == $developer->id ? 'selected' : '' }}>{{ $developer->name }}</option>
+                @endforeach
+            </select>
         </div>
         {{-- <div class="form-group">
             <label for="platforms">Platforms</label>
