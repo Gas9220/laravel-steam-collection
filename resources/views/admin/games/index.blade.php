@@ -14,7 +14,7 @@
                 <th scope="col">Developers</th>
                 <th scope="col">Platforms</th>
                 <th scope="col">Pegi</th>
-                <th scope="col">Genre</th>
+                <th scope="col">Genres</th>
                 <th scope="col">Rating</th>
                 <th scope="col">Early Access</th>
                 <th scope="col">Description</th>
@@ -28,7 +28,11 @@
                 <td>{{ $game->developers }}</td>
                 <td>{{ $game->platforms }}</td>
                 <td>{{ $game->pegi }}</td>
-                <td>{{ $game->genre }}</td>
+                <td>
+                    @foreach ($game->genres as $genre)
+                        <span class="badge bg-warning">{{$genre->name}}</span>
+                    @endforeach
+                </td>
                 <td>{{ $game->rating }}</td>
                 <td>{{ $game->early_access == 0 ? 'no' : 'yes'}}</td>
                 <td>{{ $game->description }}</td>
