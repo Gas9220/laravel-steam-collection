@@ -82,8 +82,9 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
+        $platforms = Platform::all();
         $game = Game::findOrFail($id);
-        return view('admin.games.edit', compact('game'));
+        return view('admin.games.edit', compact('game','platforms'));
     }
 
 
