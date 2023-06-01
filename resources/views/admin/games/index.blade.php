@@ -45,6 +45,15 @@
                                 </li>
                                 <li><a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-success">Edit </a>
                                 </li>
+                                <li>
+                                    <form action="{{ route('admin.games.destroy', $game) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="circle-btn delete-btn btn btn-danger">
+                                            <i class="bi bi-trash3-fill"></i>
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </td>
                     </tr>
